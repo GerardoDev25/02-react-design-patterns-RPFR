@@ -1,4 +1,3 @@
-import { Suspense } from 'react';
 import {
   Route,
   Routes,
@@ -8,37 +7,41 @@ import {
 } from 'react-router-dom';
 
 import logo from '../assets/react.svg';
-import { routes } from './routes';
-
 export const Navigation = () => {
   const handleIsActive = ({ isActive }: { isActive: boolean }): string =>
     isActive ? '' : 'nav-active';
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <BrowserRouter>
-        <div className='main-layout'>
-          <nav>
-            <img src={logo} alt='react logo' />
-            <ul>
-              {routes.map(({ to, name }) => (
-                <li key={to}>
-                  <NavLink to={to} className={handleIsActive}>
-                    {name}
-                  </NavLink>
-                </li>
-              ))}
-            </ul>
-          </nav>
+    <BrowserRouter>
+      <div className='main-layout'>
+        <nav>
+          <img src={logo} alt='react logo' />
+          <ul>
+            <li>
+              <NavLink to='/' className={handleIsActive}>
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to='/about' className={handleIsActive}>
+                About
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to='/users' className={handleIsActive}>
+                Users
+              </NavLink>
+            </li>
+          </ul>
+        </nav>
 
-          <Routes>
-            {routes.map(({ path, Component }) => (
-              <Route key={path} path={path} element={<Component />} />
-            ))}
-            <Route path='/*' element={<Navigate to={routes[0].to} replace />} />
-          </Routes>
-        </div>
-      </BrowserRouter>
-    </Suspense>
+        <Routes>
+          <Route path='/about' element={<h1>About</h1>} />
+          <Route path='/users' element={<h1>Users</h1>} />
+          <Route path='/' element={<h1>Home</h1>} />
+          <Route path='/*' element={<Navigate to='/' replace />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 };
