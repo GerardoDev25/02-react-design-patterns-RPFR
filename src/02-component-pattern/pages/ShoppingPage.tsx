@@ -19,13 +19,14 @@ export const ShoppingPage = () => {
       <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
         <ProductCard product={product}>
           <ProductCard.Image />
-          <ProductCard.Title title='hola' />
-          <ProductCard.Buttons counter={10} increaseBy={() => {}} />
+          <ProductCard.Title title='hola mundo' />
+          <ProductCard.Buttons />
         </ProductCard>
+
         <ProductCard product={product}>
           <ProductImage />
-          <ProductTitle title='hola' />
-          <ProductButtons counter={10} increaseBy={() => {}} />
+          <ProductTitle />
+          <ProductButtons />
         </ProductCard>
       </div>
     </div>

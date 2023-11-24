@@ -1,4 +1,4 @@
-import { FC, ReactElement } from 'react';
+import { ReactElement, createContext, useContext } from 'react';
 
 import { useProduct } from '../hooks/usProduct';
 import styles from '../styles/styles.module.css';
@@ -15,29 +15,46 @@ interface Product {
   img?: string;
 }
 
+interface ProductContextProps {
+  counter: number;
+  increaseBy: (value: number) => void;
+  product: Product;
+}
+
+const ProductContext = createContext({} as ProductContextProps);
+const { Provider } = ProductContext;
+
 export const ProductImage = ({ img = '' }): JSX.Element => {
+  const { product } = useContext(ProductContext);
+
+  let imgToShow: string;
+
+  if (img) {
+    imgToShow = img;
+  } else if (product.img) {
+    imgToShow = product.img;
+  } else {
+    imgToShow = noIgamge;
+  }
+
   return (
-    <img
-      className={styles.productImg}
-      src={img ? img : noIgamge}
-      alt='Product img'
-    />
+    <img className={styles.productImg} src={imgToShow} alt='Product img' />
   );
 };
 
-export const ProductTitle = ({ title }: { title: string }) => {
-  return <span className={styles.productDescription}>{title}</span>;
+export const ProductTitle = ({ title }: { title?: string }) => {
+  const { product } = useContext(ProductContext);
+
+  return (
+    <span className={styles.productDescription}>
+      {title ? title : product.title}
+    </span>
+  );
 };
 
-interface ProductButtonsPros {
-  counter: number;
-  increaseBy: (value: number) => void;
-}
+export const ProductButtons = () => {
+  const { counter, increaseBy } = useContext(ProductContext);
 
-export const ProductButtons: FC<ProductButtonsPros> = ({
-  counter,
-  increaseBy,
-}) => {
   return (
     <div className={styles.buttonsContainer}>
       <button className={styles.buttonMinus} onClick={() => increaseBy(-1)}>
@@ -52,16 +69,19 @@ export const ProductButtons: FC<ProductButtonsPros> = ({
 };
 
 export const ProductCard = ({ product, children }: Props) => {
-  // const { title, img } = product;
-  // const { counter, increaseBy } = useProduct();
+  const { counter, increaseBy } = useProduct();
 
   return (
-    <div className={styles.productCard}>
-      {children}
-      {/* <ProductImage img={img} />
-      <ProductTitle title={title} />
-      <ProductButtons counter={counter} increaseBy={increaseBy} /> */}
-    </div>
+    <Provider value={{ counter, increaseBy, product }}>
+      <div className={styles.productCard}>
+        {children}
+        {/* 
+          <ProductImage img={img} />
+          <ProductTitle title={title} />
+          <ProductButtons counter={counter} increaseBy={increaseBy} /> 
+        */}
+      </div>
+    </Provider>
   );
 };
 
