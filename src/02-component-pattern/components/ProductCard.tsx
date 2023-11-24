@@ -51,7 +51,7 @@ export const ProductButtons: FC<ProductButtonsPros> = ({
   );
 };
 
-export const ProductCard: FC<Props> = ({ product, children }) => {
+export const ProductCard = ({ product, children }: Props) => {
   // const { title, img } = product;
   // const { counter, increaseBy } = useProduct();
 
@@ -64,3 +64,7 @@ export const ProductCard: FC<Props> = ({ product, children }) => {
     </div>
   );
 };
+
+ProductCard.Title = ProductTitle;
+ProductCard.Image = ProductImage;
+ProductCard.Buttons = ProductButtons;
