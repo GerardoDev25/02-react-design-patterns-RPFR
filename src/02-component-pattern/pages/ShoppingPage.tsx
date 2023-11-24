@@ -13,11 +13,11 @@ export const ShoppingPage = () => {
       <h1>Shopping store</h1>
       <hr />
       <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
-        {/* <ProductCard product={product}>
+        <ProductCard product={product}>
           <ProductCard.Image />
           <ProductCard.Title title='hola mundo' />
           <ProductCard.Buttons />
-        </ProductCard> */}
+        </ProductCard>
 
         <ProductCard product={product}>
           <ProductImage />

@@ -16,3 +16,14 @@ export interface ProductContextProps {
   increaseBy: (value: number) => void;
   product: Product;
 }
+
+export interface ProductCardHOCProps {
+  (params: ProductCardProps): JSX.Element;
+  Title: ({ title }: { title?: string }) => JSX.Element;
+  Image: ({ img }: { img?: string }) => JSX.Element;
+  Buttons: ({
+    children,
+  }: {
+    children?: ReactElement | ReactElement[];
+  }) => JSX.Element;
+}
