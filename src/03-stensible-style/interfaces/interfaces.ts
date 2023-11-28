@@ -19,7 +19,9 @@ export interface ProductCardHOCProps {
   Image: ({ img }: { img?: string }) => JSX.Element;
   Buttons: ({
     children,
+    className,
   }: {
     children?: ReactElement | ReactElement[];
+    className?: string;
   }) => JSX.Element;
 }

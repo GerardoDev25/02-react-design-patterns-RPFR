@@ -3,7 +3,11 @@ import { ProductContext } from './ProductCard';
 
 import styles from '../styles/styles.module.css';
 
-export const ProductButtons = ({ className }: { className?: string }) => {
+export interface Props {
+  className?: string;
+}
+
+export const ProductButtons = ({ className }: Props) => {
   const { counter, increaseBy } = useContext(ProductContext);
 
   return (

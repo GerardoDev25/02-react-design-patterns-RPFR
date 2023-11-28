@@ -20,10 +20,10 @@ export const ShoppingPage = () => {
           <ProductCard.Buttons />
         </ProductCard>
 
-        <ProductCard product={product} className='bg-dark'>
+        <ProductCard product={product} className='bg-dark text-white'>
           <ProductImage className='costume-image' />
-          <ProductTitle className='text-white text-bold' />
-          <ProductButtons />
+          <ProductTitle className='text-bold' />
+          <ProductButtons className='costume-buttons' />
         </ProductCard>
       </div>
     </div>
