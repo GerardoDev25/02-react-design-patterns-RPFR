@@ -1,8 +1,9 @@
 import { ProductButtons } from '../components/ProductButtons';
 import { ProductCard, ProductImage, ProductTitle } from '../components';
 import '../styles/costume.style.css';
+import { Product } from '../interfaces';
 
-const product = {
+const product1 = {
   id: '1',
   title: 'Coffee Mug - Card',
   img: './coffee-mug.png',
@@ -14,24 +15,50 @@ const product2 = {
   img: './coffee-mug2.png',
 };
 
+const products: Product[] = [product1, product2];
+
 export const ShoppingPage = () => {
   return (
     <div>
       <h1>Shopping store</h1>
       <hr />
       <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
-        <ProductCard product={product} className='bg-dark text-white'>
-          <ProductCard.Image className='costume-image' />
-          <ProductCard.Title className='text-bold'/>
-          <ProductCard.Buttons className='costume-buttons'/>
-        </ProductCard>
-
-        <ProductCard product={product2} className='bg-dark text-white'>
+        {products.map((product) => (
+          <ProductCard
+            key={product.id}
+            product={product}
+            className='bg-dark text-white'
+          >
+            <ProductImage
+              className='costume-image'
+              style={{ boxShadow: '10px' }}
+            />
+            <ProductTitle className='text-bold' />
+            <ProductButtons className='costume-buttons' />
+          </ProductCard>
+        ))}
+      </div>
+      <div className='shopping-card'>
+        <ProductCard
+          product={product2}
+          className='bg-dark text-white'
+          style={{ width: '100px' }}
+        >
           <ProductImage
             className='costume-image'
             style={{ boxShadow: '10px' }}
           />
-          <ProductTitle className='text-bold' />
+          <ProductButtons className='costume-buttons' />
+        </ProductCard>
+        <ProductCard
+          product={product1}
+          className='bg-dark text-white'
+          style={{ width: '100px' }}
+        >
+          <ProductImage
+            className='costume-image'
+            style={{ boxShadow: '10px' }}
+          />
           <ProductButtons className='costume-buttons' />
         </ProductCard>
       </div>
