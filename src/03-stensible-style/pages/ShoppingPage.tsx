@@ -15,7 +15,7 @@ export const ShoppingPage = () => {
       <hr />
       <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
         <ProductCard product={product} className='bg-dark'>
-          <ProductCard.Image  className='costume-image' />
+          <ProductCard.Image className='costume-image' />
           <ProductCard.Title title='hola mundo' />
           <ProductCard.Buttons />
         </ProductCard>
@@ -24,6 +24,11 @@ export const ShoppingPage = () => {
           <ProductImage className='costume-image' />
           <ProductTitle className='text-bold' />
           <ProductButtons className='costume-buttons' />
+        </ProductCard>
+        <ProductCard product={product}>
+          <ProductImage />
+          <ProductTitle />
+          <ProductButtons />
         </ProductCard>
       </div>
     </div>
