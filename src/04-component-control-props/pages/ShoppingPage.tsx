@@ -1,5 +1,9 @@
-import { ProductButtons } from '../components/ProductButtons';
-import { ProductCard, ProductImage, ProductTitle } from '../components';
+import {
+  ProductCard,
+  ProductImage,
+  ProductTitle,
+  ProductButtons,
+} from '../components';
 import '../styles/costume.style.css';
 import { Product, onChangeArgs } from '../interfaces';
 import { useState } from 'react';
@@ -25,10 +29,28 @@ interface ProductInCart extends Product {
 export const ShoppingPage = () => {
   const [shoppingCart, setShoppingCart] = useState<{
     [key: string]: ProductInCart;
-  }>();
+  }>({});
 
   const onProductCountChange = ({ count, product }: onChangeArgs) => {
-    console.log({ count, product });
+    // if (count == 0) {
+    //   const newShoppingCart = structuredClone(shoppingCart);
+    //   delete newShoppingCart[product.id];
+    //   setShoppingCart({ ...newShoppingCart });
+    //   return;
+    // }
+
+    setShoppingCart((oldShoppingCart) => {
+      if (count == 0) {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const { [product.id]: toDelate, ...rest } = oldShoppingCart;
+        return rest;
+      }
+
+      return {
+        ...oldShoppingCart,
+        [product.id]: { count, ...product },
+      };
+    });
   };
 
   return (
@@ -76,6 +98,10 @@ export const ShoppingPage = () => {
           />
           <ProductButtons className='costume-buttons' />
         </ProductCard>
+      </div>
+
+      <div>
+        <code>{JSON.stringify(shoppingCart, null, 2)}</code>
       </div>
     </div>
   );
