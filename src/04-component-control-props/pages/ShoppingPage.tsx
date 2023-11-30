@@ -32,24 +32,20 @@ export const ShoppingPage = () => {
   }>({});
 
   const onProductCountChange = ({ count, product }: onChangeArgs) => {
-    // if (count == 0) {
-    //   const newShoppingCart = structuredClone(shoppingCart);
-    //   delete newShoppingCart[product.id];
-    //   setShoppingCart({ ...newShoppingCart });
-    //   return;
-    // }
-
     setShoppingCart((oldShoppingCart) => {
       if (count == 0) {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { [product.id]: toDelate, ...rest } = oldShoppingCart;
+
         return rest;
       }
 
-      return {
+      const newState = {
         ...oldShoppingCart,
         [product.id]: { count, ...product },
       };
+
+      return newState;
     });
   };
 
@@ -74,34 +70,26 @@ export const ShoppingPage = () => {
           </ProductCard>
         ))}
       </div>
-      <div className='shopping-card'>
-        <ProductCard
-          product={product2}
-          className='bg-dark text-white'
-          style={{ width: '100px' }}
-          // onChange={() => onProductCountChange()}
-        >
-          <ProductImage
-            className='costume-image'
-            style={{ boxShadow: '10px' }}
-          />
-          <ProductButtons className='costume-buttons' />
-        </ProductCard>
-        <ProductCard
-          product={product1}
-          className='bg-dark text-white'
-          style={{ width: '100px' }}
-        >
-          <ProductImage
-            className='costume-image'
-            style={{ boxShadow: '10px' }}
-          />
-          <ProductButtons className='costume-buttons' />
-        </ProductCard>
-      </div>
 
-      <div>
-        <code>{JSON.stringify(shoppingCart, null, 2)}</code>
+      <div className='shopping-card'>
+        {Object.entries(shoppingCart).map(([key, product]) => (
+          <ProductCard
+            key={key}
+            product={product}
+            className='bg-dark text-white'
+            style={{ width: '100px' }}
+            // onChange={() => onProductCountChange()}
+          >
+            <ProductImage
+              className='costume-image'
+              style={{ boxShadow: '10px' }}
+            />
+            <ProductButtons
+              className='costume-buttons'
+              style={{ display: 'flex', justifyContent: 'center' }}
+            />
+          </ProductCard>
+        ))}
       </div>
     </div>
   );
