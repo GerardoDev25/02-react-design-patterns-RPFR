@@ -7,11 +7,8 @@ interface useProductArgs {
   value?: number;
 }
 
-export const useProduct = ({
-  onChange,
-  product,
-  value = 0,
-}: useProductArgs) => {
+export const useProduct = (props: useProductArgs) => {
+  const { onChange, product, value = 0 } = props;
   const [counter, setCounter] = useState(value);
 
   useEffect(() => {
@@ -22,7 +19,6 @@ export const useProduct = ({
     const newValue = Math.max(counter + value, 0);
 
     setCounter(newValue);
-
     onChange && onChange({ count: newValue, product });
   };
 

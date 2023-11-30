@@ -1,12 +1,13 @@
+import { useState } from 'react';
 import {
   ProductCard,
   ProductImage,
   ProductTitle,
   ProductButtons,
 } from '../components';
-import '../styles/costume.style.css';
 import { Product, onChangeArgs } from '../interfaces';
-import { useState } from 'react';
+
+import '../styles/costume.style.css';
 
 const product1 = {
   id: '1',
@@ -42,7 +43,7 @@ export const ShoppingPage = () => {
 
       const newState = {
         ...oldShoppingCart,
-        [product.id]: { count, ...product },
+        [product.id]: { ...product, count },
       };
 
       return newState;
@@ -59,6 +60,7 @@ export const ShoppingPage = () => {
             key={product.id}
             product={product}
             className='bg-dark text-white'
+            value={shoppingCart[product.id]?.count || 0}
             onChange={onProductCountChange}
           >
             <ProductImage
@@ -79,6 +81,7 @@ export const ShoppingPage = () => {
             className='bg-dark text-white'
             style={{ width: '100px' }}
             value={product.count}
+            onChange={onProductCountChange}
           >
             <ProductImage
               className='costume-image'
