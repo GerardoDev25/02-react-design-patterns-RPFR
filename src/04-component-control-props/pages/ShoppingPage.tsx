@@ -1,7 +1,7 @@
 import { ProductButtons } from '../components/ProductButtons';
 import { ProductCard, ProductImage, ProductTitle } from '../components';
 import '../styles/costume.style.css';
-import { Product } from '../interfaces';
+import { Product, onChangeArgs } from '../interfaces';
 import { useState } from 'react';
 
 const product1 = {
@@ -11,7 +11,7 @@ const product1 = {
 };
 
 const product2 = {
-  id: '12',
+  id: '2',
   title: 'Coffee Mug - meme',
   img: './coffee-mug2.png',
 };
@@ -27,8 +27,8 @@ export const ShoppingPage = () => {
     [key: string]: ProductInCart;
   }>();
 
-  const onProductCountChange = () => {
-    console.log('onProductCountChange');
+  const onProductCountChange = ({ count, product }: onChangeArgs) => {
+    console.log({ count, product });
   };
 
   return (
@@ -41,7 +41,7 @@ export const ShoppingPage = () => {
             key={product.id}
             product={product}
             className='bg-dark text-white'
-            onChange={() => onProductCountChange()}
+            onChange={onProductCountChange}
           >
             <ProductImage
               className='costume-image'
@@ -57,7 +57,7 @@ export const ShoppingPage = () => {
           product={product2}
           className='bg-dark text-white'
           style={{ width: '100px' }}
-          onChange={() => onProductCountChange()}
+          // onChange={() => onProductCountChange()}
         >
           <ProductImage
             className='costume-image'
