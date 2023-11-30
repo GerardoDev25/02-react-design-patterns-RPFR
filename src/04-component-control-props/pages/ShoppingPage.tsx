@@ -1,69 +1,16 @@
-import { useState } from 'react';
 import {
   ProductCard,
   ProductImage,
   ProductTitle,
   ProductButtons,
 } from '../components';
-import { Product, onChangeArgs } from '../interfaces';
 
 import '../styles/costume.style.css';
-
-const product1 = {
-  id: '1',
-  title: 'Coffee Mug - Card',
-  img: './coffee-mug.png',
-};
-
-const product2 = {
-  id: '2',
-  title: 'Coffee Mug - meme',
-  img: './coffee-mug2.png',
-};
-
-const products: Product[] = [product1, product2];
-
-interface ProductInCart extends Product {
-  count: number;
-}
+import { products } from '../data/product';
+import { useShoppingCart } from '../hooks/useShoppingCart';
 
 export const ShoppingPage = () => {
-  const [shoppingCart, setShoppingCart] = useState<{
-    [key: string]: ProductInCart;
-  }>({});
-
-  const onProductCountChange = ({ count, product }: onChangeArgs) => {
-    setShoppingCart((oldShoppingCart) => {
-      const productInCard: ProductInCart = oldShoppingCart[product.id] || {
-        ...product,
-        count: 0,
-      };
-
-      if (Math.max(productInCard.count + count, 0) > 0) {
-        productInCard.count += count;
-        return { ...oldShoppingCart, [product.id]: productInCard };
-      }
-
-      // ? borrar el producto del carrito
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const { [product.id]: toDelate, ...rest } = oldShoppingCart;
-      return rest;
-
-      // if (count == 0) {
-      //   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      //   const { [product.id]: toDelate, ...rest } = oldShoppingCart;
-
-      //   return rest;
-      // }
-
-      // const newState = {
-      //   ...oldShoppingCart,
-      //   [product.id]: { ...product, count },
-      // };
-
-      // return newState;
-    });
-  };
+  const { shoppingCart, onProductCountChange } = useShoppingCart();
 
   return (
     <div>
