@@ -12,11 +12,12 @@ export interface Props {
   className?: string;
   style?: CSSProperties;
   onChange?: (args: onChangeArgs) => void;
+  value?: number;
 }
 
 export const ProductCard = (props: Props) => {
-  const { product, children, className, style, onChange } = props;
-  const { counter, increaseBy } = useProduct({ onChange, product });
+  const { product, children, className, style, onChange, value } = props;
+  const { counter, increaseBy } = useProduct({ onChange, product, value });
 
   return (
     <Provider value={{ counter, increaseBy, product }}>
