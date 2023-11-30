@@ -33,6 +33,7 @@ export const ShoppingPage = () => {
   }>({});
 
   const onProductCountChange = ({ count, product }: onChangeArgs) => {
+    console.log({ count });
     setShoppingCart((oldShoppingCart) => {
       if (count == 0) {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
