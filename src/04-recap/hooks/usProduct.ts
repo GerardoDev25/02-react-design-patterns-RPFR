@@ -2,11 +2,10 @@ import { useEffect, useRef, useState } from 'react';
 import { Product, onChangeArgs } from '../interfaces';
 
 interface useProductArgs {
-  product: Product;
   onChange?: (args: onChangeArgs) => void;
   value?: number;
+  product: Product;
 }
-
 export const useProduct = (props: useProductArgs) => {
   const { onChange, product, value = 0 } = props;
   const [counter, setCounter] = useState(value);
@@ -17,14 +16,15 @@ export const useProduct = (props: useProductArgs) => {
     setCounter(value);
   }, [value]);
 
-  const increaseBy = (valueIncrease: number) => {
+  const increaseBy = (value: number) => {
     if (isControlled.current) {
-      return onChange!({ count: valueIncrease, product });
+      return onChange!({ count: value, product });
     }
 
-    const newValue = Math.max(counter + valueIncrease, 0);
+    const newValue = Math.max(counter + value, 0);
+
     setCounter(newValue);
-    onChange && onChange({ count: newValue, product });
+    onChange && onChange({ product, count: newValue });
   };
 
   return { counter, increaseBy };

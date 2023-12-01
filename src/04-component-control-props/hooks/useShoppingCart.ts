@@ -17,7 +17,7 @@ export const useShoppingCart = () => {
         productInCard.count += count;
         return { ...oldShoppingCart, [product.id]: productInCard };
       }
-
+      
       // ? borrar el producto del carrito
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const { [product.id]: toDelate, ...rest } = oldShoppingCart;
