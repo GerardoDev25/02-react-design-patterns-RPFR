@@ -16,7 +16,15 @@ export const ShoppingPage = () => {
       <h1>Shopping store</h1>
       <hr />
       <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap' }}>
-        <ProductCard product={product} className='bg-dark text-white'>
+        <ProductCard
+          key={product.id}
+          product={product}
+          className='bg-dark text-white'
+          initialValues={{
+            count: 4,
+            maxCount: 10,
+          }}
+        >
           <ProductImage
             className='costume-image'
             style={{ boxShadow: '10px' }}
