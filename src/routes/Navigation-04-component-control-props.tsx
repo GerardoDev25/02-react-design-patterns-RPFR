@@ -7,7 +7,7 @@ import {
 } from 'react-router-dom';
 
 import logo from '../assets/react.svg';
-import { ShoppingPage } from '../05-component-state-initializer/pages/ShoppingPage';
+import { ShoppingPage } from '../04-component-control-props/pages/ShoppingPage';
 
 export const Navigation = () => {
   const handleIsActive = ({ isActive }: { isActive: boolean }): string =>
