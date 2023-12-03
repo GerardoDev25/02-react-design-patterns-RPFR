@@ -25,12 +25,16 @@ export const ShoppingPage = () => {
             maxCount: 10,
           }}
         >
-          <ProductImage
-            className='costume-image'
-            style={{ boxShadow: '10px' }}
-          />
-          <ProductTitle className='text-bold' />
-          <ProductButtons className='costume-buttons' />
+          {() => (
+            <>
+              <ProductImage
+                className='costume-image'
+                style={{ boxShadow: '10px' }}
+              />
+              <ProductTitle className='text-bold' />
+              <ProductButtons className='costume-buttons' />
+            </>
+          )}
         </ProductCard>
       </div>
     </div>
