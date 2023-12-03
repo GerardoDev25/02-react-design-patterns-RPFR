@@ -33,5 +33,5 @@ export const useProduct = (props: useProductArgs) => {
     onChange && onChange({ count: newValue, product });
   };
 
-  return { counter, increaseBy };
+  return { counter, increaseBy, maxCount: initialValues?.maxCount };
 };
