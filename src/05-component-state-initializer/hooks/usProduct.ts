@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { InitialValues, Product, onChangeArgs } from '../interfaces';
 
 interface useProductArgs {
@@ -12,7 +12,13 @@ export const useProduct = (props: useProductArgs) => {
   const { onChange, product, value = 0, initialValues } = props;
   const [counter, setCounter] = useState<number>(initialValues?.count || value);
 
+  const isMounted = useRef(false);
   useEffect(() => {
+    isMounted.current = true;
+  }, []);
+
+  useEffect(() => {
+    if (!isMounted.current) return;
     setCounter(value);
   }, [value]);
 
