@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 
 import logo from '../assets/react.svg';
+import { RegisterPage } from '../03-forms/pages/RegisterPage';
 
 export const Navigation = () => {
   const handleIsActive = ({ isActive }: { isActive: boolean }): string =>
@@ -19,8 +20,8 @@ export const Navigation = () => {
           <img src={logo} alt='react logo' />
           <ul>
             <li>
-              <NavLink to='/' className={handleIsActive}>
-                home
+              <NavLink to='/register' className={handleIsActive}>
+                Register Page
               </NavLink>
             </li>
             <li>
@@ -39,7 +40,7 @@ export const Navigation = () => {
         <Routes>
           <Route path='/about' element={<h1>About</h1>} />
           <Route path='/users' element={<h1>Users</h1>} />
-          <Route path='/' element={<h1>Home</h1>} />
+          <Route path='/register' element={<RegisterPage />} />
           <Route path='/*' element={<Navigate to='/' replace />} />
         </Routes>
       </div>
