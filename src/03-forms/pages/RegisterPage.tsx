@@ -4,7 +4,16 @@ import { useForm } from '../hooks';
 import '../style/style.css';
 
 export const RegisterPage = () => {
-  const { email, name, password1, password2, formDate, onChange } = useForm({
+  const {
+    email,
+    name,
+    password1,
+    password2,
+    formDate,
+    onChange,
+    reserForm,
+    isValidEmail,
+  } = useForm({
     name: '',
     email: '',
     password1: '',
@@ -26,14 +35,18 @@ export const RegisterPage = () => {
           name='name'
           type='text'
           placeholder='name'
+          className={`${name.trim().length <= 0 && 'has-error'}`}
         />
+        {name.trim().length <= 0 && <span>this field is required</span>}
         <input
           onChange={onChange}
           value={email}
           name='email'
           type='email'
           placeholder='email'
+          className={`${!isValidEmail(email) && 'has-error'}`}
         />
+        {!isValidEmail(email) && <span>email not valid</span>}
         <input
           onChange={(ev) => onChange(ev)}
           value={password1}
@@ -41,6 +54,10 @@ export const RegisterPage = () => {
           type='password'
           placeholder='password'
         />
+        {password1.trim().length <= 0 && <span>this field is required</span>}
+        {password1.trim().length < 6 && password1.trim().length > 0 && (
+          <span>this field have to be larger than 4 characters</span>
+        )}
         <input
           onChange={onChange}
           value={password2}
@@ -48,7 +65,14 @@ export const RegisterPage = () => {
           type='password'
           placeholder='repeat password'
         />
+        {password2.trim().length <= 0 && <span>this field is required</span>}
+        {!(password2 === password1) && password2.trim().length > 0 && (
+          <span>the password have to be match</span>
+        )}
         <button type='submit'>Create</button>
+        <button type='button' onClick={reserForm}>
+          Reset
+        </button>
       </form>
     </div>
   );
