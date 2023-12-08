@@ -7,6 +7,12 @@ interface FormValues {
   email: string;
 }
 
+const initialValues: FormValues = {
+  firstName: '',
+  lastName: '',
+  email: '',
+};
+
 export const FormikBasicPage = () => {
   const validate = ({ email, firstName, lastName }: FormValues) => {
     const errors: FormikErrors<FormValues> = {};
@@ -25,26 +31,23 @@ export const FormikBasicPage = () => {
 
     if (!email) {
       errors.email = 'Required';
-    } else if (
-      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)
-    ) {
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email)) {
       errors.email = 'Invalid email address';
     }
 
     return errors;
   };
 
-  const { handleChange, values, handleSubmit } = useFormik({
-    initialValues: {
-      firstName: '',
-      lastName: '',
-      email: '',
-    },
-    validate,
-    onSubmit: (values) => {
-      console.log(values);
-    },
-  });
+  const onSubmit = (values: FormValues) => {
+    console.log(values);
+  };
+
+  const { handleChange, values, handleSubmit, errors, touched, handleBlur } =
+    useFormik({
+      initialValues,
+      validate,
+      onSubmit,
+    });
 
   return (
     <div>
@@ -58,8 +61,11 @@ export const FormikBasicPage = () => {
           id='firstName'
           value={values.firstName}
           onChange={handleChange}
+          onBlur={handleBlur}
         />
-        <span>fist name is required</span>
+        {touched.firstName && errors.firstName && (
+          <span>{errors.firstName}</span>
+        )}
 
         <label htmlFor='lastName'>Last Name</label>
         <input
@@ -68,8 +74,9 @@ export const FormikBasicPage = () => {
           id='lastName'
           value={values.lastName}
           onChange={handleChange}
+          onBlur={handleBlur}
         />
-        <span>last name is required</span>
+        {touched.lastName && errors.lastName && <span>{errors.lastName}</span>}
 
         <label htmlFor='email'>Email</label>
         <input
@@ -78,9 +85,9 @@ export const FormikBasicPage = () => {
           id='email'
           value={values.email}
           onChange={handleChange}
+          onBlur={handleBlur}
         />
-        <span>email is required</span>
-        <span>check for a valid email</span>
+        {touched.email && errors.email && <span>{errors.email}</span>}
 
         <button type='submit'>Submit</button>
       </form>
