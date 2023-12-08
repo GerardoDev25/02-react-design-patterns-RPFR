@@ -8,6 +8,7 @@ import {
 
 import logo from '../assets/react.svg';
 import { RegisterPage } from '../03-forms/pages/RegisterPage';
+import { FormikBasicPage } from '../03-forms/pages/FormikBasicPage';
 
 export const Navigation = () => {
   const handleIsActive = ({ isActive }: { isActive: boolean }): string =>
@@ -25,8 +26,8 @@ export const Navigation = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to='/about' className={handleIsActive}>
-                About
+              <NavLink to='/formik-basic' className={handleIsActive}>
+                Formik Basic
               </NavLink>
             </li>
             <li>
@@ -38,7 +39,7 @@ export const Navigation = () => {
         </nav>
 
         <Routes>
-          <Route path='/about' element={<h1>About</h1>} />
+          <Route path='/formik-basic' element={<FormikBasicPage />} />
           <Route path='/users' element={<h1>Users</h1>} />
           <Route path='/register' element={<RegisterPage />} />
           <Route path='/*' element={<Navigate to='/' replace />} />

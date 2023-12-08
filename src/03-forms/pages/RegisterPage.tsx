@@ -9,7 +9,7 @@ export const RegisterPage = () => {
     name,
     password1,
     password2,
-    formDate,
+    formData,
     onChange,
     reserForm,
     isValidEmail,
@@ -22,7 +22,7 @@ export const RegisterPage = () => {
 
   const onSubmit = (event: FormEvent<HTMLFormElement>): void => {
     event.preventDefault();
-    console.log(formDate);
+    console.log(formData);
   };
 
   return (

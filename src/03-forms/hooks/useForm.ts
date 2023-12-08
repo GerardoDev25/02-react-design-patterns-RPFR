@@ -1,15 +1,12 @@
 import { useState, ChangeEvent } from 'react';
 
 export const useForm = <T>(initalState: T) => {
-  const [formDate, setFormData] = useState<T>(initalState);
+  const [formData, setFormData] = useState<T>(initalState);
 
-  const onChange = ({ target }: ChangeEvent<HTMLInputElement>): void => {
-    setFormData({ ...formDate, [target.name]: target.value });
-  };
+  const onChange = ({ target }: ChangeEvent<HTMLInputElement>): void =>
+    setFormData({ ...formData, [target.name]: target.value });
 
-  const reserForm = () => {
-    setFormData({ ...initalState });
-  };
+  const reserForm = () => setFormData({ ...initalState });
 
   const isValidEmail = (email: string) => {
     const re =
@@ -17,11 +14,11 @@ export const useForm = <T>(initalState: T) => {
     return re.test(email);
   };
   return {
-    // variables
-    ...formDate,
-    formDate,
+    //* variables
+    ...formData,
+    formData,
 
-    // functions
+    //* functions
     isValidEmail,
     onChange,
     reserForm,
