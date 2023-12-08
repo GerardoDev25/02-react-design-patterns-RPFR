@@ -37,7 +37,7 @@ export const FormikYupPage = () => {
 
   return (
     <div>
-      <h1>Formik YupTutorial</h1>
+      <h1>Formik Yup Tutorial</h1>
 
       <form noValidate onSubmit={handleSubmit}>
         <label htmlFor='firstName'>Firs Name</label>
