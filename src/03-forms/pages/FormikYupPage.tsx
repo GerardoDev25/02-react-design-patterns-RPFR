@@ -29,12 +29,11 @@ export const FormikYupPage = () => {
     email: Yup.string().email('invalid email').required('required'),
   });
 
-  const { handleChange, values, handleSubmit, errors, touched, handleBlur } =
-    useFormik({
-      initialValues,
-      validationSchema,
-      onSubmit,
-    });
+  const { handleSubmit, errors, touched, getFieldProps } = useFormik({
+    initialValues,
+    validationSchema,
+    onSubmit,
+  });
 
   return (
     <div>
@@ -42,38 +41,17 @@ export const FormikYupPage = () => {
 
       <form noValidate onSubmit={handleSubmit}>
         <label htmlFor='firstName'>Firs Name</label>
-        <input
-          type='text'
-          name='firstName'
-          id='firstName'
-          value={values.firstName}
-          onChange={handleChange}
-          onBlur={handleBlur}
-        />
+        <input type='text' id='firstName' {...getFieldProps('firstName')} />
         {touched.firstName && errors.firstName && (
           <span>{errors.firstName}</span>
         )}
 
         <label htmlFor='lastName'>Last Name</label>
-        <input
-          type='text'
-          name='lastName'
-          id='lastName'
-          value={values.lastName}
-          onChange={handleChange}
-          onBlur={handleBlur}
-        />
+        <input type='text' id='lastName' {...getFieldProps('lastName')} />
         {touched.lastName && errors.lastName && <span>{errors.lastName}</span>}
 
         <label htmlFor='email'>Email</label>
-        <input
-          type='email'
-          name='email'
-          id='email'
-          value={values.email}
-          onChange={handleChange}
-          onBlur={handleBlur}
-        />
+        <input type='email' id='email' {...getFieldProps('email')} />
         {touched.email && errors.email && <span>{errors.email}</span>}
 
         <button type='submit'>Submit</button>
