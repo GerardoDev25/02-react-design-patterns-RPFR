@@ -12,5 +12,12 @@
     "placeholder":"Gerardo",
     "label":"Last Name",
     "value":""
+  },
+  {
+    "type":"email",
+    "name":"email",
+    "placeholder":"jonh@doe.com",
+    "label":"Email",
+    "value":""
   }
 ]

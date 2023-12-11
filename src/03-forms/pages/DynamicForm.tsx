@@ -2,9 +2,13 @@ import { Formik, Form } from 'formik';
 import formJson from '../data/custome-form.json';
 import { MyTextInput } from '../components';
 
-const initalValues = {
-  name: '',
-};
+const initialValues: {
+  [key: string]: any;
+} = {};
+
+for (const input of formJson) {
+  initialValues[input.name] = input.value;
+}
 
 export const DynamicForm = () => {
   const onSubmit = (values: any): void => {
@@ -14,9 +18,9 @@ export const DynamicForm = () => {
   return (
     <div>
       <h1>Dynamic Form</h1>
-      <Formik initialValues={initalValues} onSubmit={onSubmit}>
+      <Formik initialValues={initialValues} onSubmit={onSubmit}>
         {() => (
-          <Form>
+          <Form noValidate>
             {formJson.map(({ type, name, placeholder, label }) => {
               return (
                 <MyTextInput
