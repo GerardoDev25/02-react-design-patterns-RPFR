@@ -1,6 +1,7 @@
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import '../style/style.css';
+import { MyTextInput } from '../components/MyTextInput';
 
 interface FormValues {
   firstName: string;
@@ -18,7 +19,7 @@ const initialValues: FormValues = {
   jobType: '',
 };
 
-export const FormikComponents = () => {
+export const FormikAbstractation = () => {
   const onSubmit = (
     values: FormValues
     // formikHelpers: FormikHelpers<FormValues>
@@ -46,7 +47,7 @@ export const FormikComponents = () => {
 
   return (
     <div>
-      <h1>Formik Components</h1>
+      <h1>Formik Abstractation</h1>
 
       <Formik
         initialValues={initialValues}
@@ -55,17 +56,24 @@ export const FormikComponents = () => {
       >
         {() => (
           <Form noValidate>
-            <label htmlFor='firstName'>Firs Name</label>
-            <Field name='firstName' type='text' placeholder='First Name' />
-            <ErrorMessage name='firstName' component='span' />
+            <MyTextInput
+              label='first Name'
+              name='firstName'
+              placeholder='First Name'
+            />
 
-            <label htmlFor='lastName'>Last Name</label>
-            <Field name='lastName' type='text' />
-            <ErrorMessage name='lastName' component='span' />
+            <MyTextInput
+              label='Last Name'
+              name='lastName'
+              placeholder='Last Name'
+            />
 
-            <label htmlFor='email'>Email Address</label>
-            <Field name='email' type='text' />
-            <ErrorMessage name='email' component='span' />
+            <MyTextInput
+              label='Email Address'
+              name='email'
+              type='email'
+              placeholder='jon@doe.com'
+            />
 
             <label htmlFor='jobType'>job Type</label>
             <Field name='jobType' as='select'>
