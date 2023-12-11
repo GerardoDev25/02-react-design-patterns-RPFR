@@ -14,6 +14,7 @@ import {
   FormikYupPage,
   FormikComponents,
   RegisterFormikPage,
+  DynamicForm,
 } from '../03-forms/pages/';
 
 const links = [
@@ -47,16 +48,11 @@ const links = [
     label: 'Register Formik',
     Component: RegisterFormikPage,
   },
-  // {
-  //   to: '/',
-  //   label: 'Home',
-  //   Component: () => <h1>Home</h1>,
-  // },
-  // {
-  //   to: '/users',
-  //   label: 'Users',
-  //   Component: () => <h1>Users</h1>,
-  // },
+  {
+    to: '/dynamick-form',
+    label: 'Dynamic Form',
+    Component: DynamicForm,
+  },
 ];
 
 export const Navigation = () => {
