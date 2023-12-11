@@ -13,6 +13,7 @@ import {
   FormikBasicPage,
   FormikYupPage,
   FormikComponents,
+  RegisterFormikPage,
 } from '../03-forms/pages/';
 
 const links = [
@@ -42,15 +43,20 @@ const links = [
     Component: FormikAbstractation,
   },
   {
-    to: '/',
-    label: 'Home',
-    Component: () => <h1>Home</h1>,
+    to: '/register-formik',
+    label: 'Register Formik',
+    Component: RegisterFormikPage,
   },
-  {
-    to: '/users',
-    label: 'Users',
-    Component: () => <h1>Users</h1>,
-  },
+  // {
+  //   to: '/',
+  //   label: 'Home',
+  //   Component: () => <h1>Home</h1>,
+  // },
+  // {
+  //   to: '/users',
+  //   label: 'Users',
+  //   Component: () => <h1>Users</h1>,
+  // },
 ];
 
 export const Navigation = () => {
