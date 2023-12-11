@@ -1,8 +1,8 @@
-import { Formik, Field, Form, ErrorMessage } from 'formik';
+import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
+import { MyCheckbox, MyTextInput, MySelect } from '../components/';
+
 import '../style/style.css';
-import { MyTextInput } from '../components/MyTextInput';
-import { MySelect } from '../components/MySelect';
 
 interface FormValues {
   firstName: string;
@@ -84,11 +84,7 @@ export const FormikAbstractation = () => {
               <option value='it-Jr'>It-Jr</option>
             </MySelect>
 
-            <label>
-              <Field name='terms' type='checkbox' />
-              Terms and conditions
-            </label>
-            <ErrorMessage name='terms' component='span' />
+            <MyCheckbox label={'Terms & conditions'} name={'terms'} />
 
             <button type='submit'>Submit</button>
           </Form>
